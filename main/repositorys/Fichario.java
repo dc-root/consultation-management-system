@@ -5,4 +5,5 @@ public interface Fichario {
     void alterar();
     void remover();
     void consultar();
+    void relatorio();
 }

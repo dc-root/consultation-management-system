@@ -63,10 +63,10 @@ public class FicharioPaciente extends FicharioGenerico<Paciente> implements Fich
             System.out.print("\tCEP: ");
             cep = entrada.nextLine();
 
-            System.out.print("\tTipo: ");
-            tipo = entrada.nextInt();
+            System.out.print("\n\tTipo\n\t1. residencial\n\t2. comercial\n\topção: ");
+            tipo = (entrada.nextInt() == 2 ? 2 : 1);
+            
             clearBuffer(entrada);
-
             enderecos.add(new Endereco(logradouro, numero, complemento, bairro, municipio, cep, tipo));
             if(enderecos.size() < 2) {
                 System.out.print("\n1. mais um endereço(qualquer numero)\n0. sair\nopcão: ");
@@ -220,6 +220,11 @@ public class FicharioPaciente extends FicharioGenerico<Paciente> implements Fich
         } else {
             System.out.println("\nNúmero de cpf não encontrado!");
         }
+    }
+
+    @Override
+    public void relatorio() {
+        listar();
     }
 
     private Paciente buscarPaciente(String cpf) {

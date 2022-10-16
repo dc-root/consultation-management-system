@@ -87,7 +87,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return logradouro+", "+numero+", "+bairro+", "+municipio+" - "+cep+" : "+complemento+", ["+tipo+"]";
+        return logradouro+", "+numero+", "+bairro+", "+municipio+" - "+cep+" : "+complemento+", "+(tipo == 1 ? "endereço residencial" : "endereço comercial");
     }
 
     @Override

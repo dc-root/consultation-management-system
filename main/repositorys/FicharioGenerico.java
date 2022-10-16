@@ -61,7 +61,7 @@ public abstract class FicharioGenerico<E> {
         }
     }
 
-    public void relatorio() {
+    protected void listar() {
         System.out.println("\nRELATÓRIO");
         System.out.println("------------------------------------------------------------------------------------");
         if(entitys.size() == 0)

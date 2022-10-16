@@ -110,6 +110,11 @@ public class FicharioMedico extends FicharioGenerico<Medico> implements Fichario
         }
     }
 
+    @Override
+    public void relatorio() {
+        listar();
+    }
+
     private Medico buscarMedico(String crm) {
         Medico medicoEncontrado = entitys.stream()
         .filter(medico -> medico.getCrm()

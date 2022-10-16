@@ -93,11 +93,12 @@ public class Main {
                         }
                     } while(opcaoMedico != 0);
                 }
+
                 case OPERACAO_CONSULTA -> {
                     do {
                         System.out.println("\nCONSULTA");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. cadastrar consulta \n"+
+                        System.out.print("1. gerar consulta \n"+
                         "2. alterar dados de consulta \n"+
                         "3. remover consulta \n"+
                         "4. mostrar dados de consulta \n"+
@@ -108,11 +109,10 @@ public class Main {
 
                         OpFicharios opcaoF = OpFicharios.values()[opcaoConsulta];
                         switch(opcaoF) {
-                            case CADASTRAR -> ficharioConsulta.cadastrar();
-                            case ALTERAR -> ficharioConsulta.alterar();
-                            case REMOVER -> ficharioConsulta.remover();
-                            case CONSULTAR -> ficharioConsulta.consultar();
-                            case RELATORIO -> ficharioConsulta.relatorio();
+                            case CADASTRAR -> ficharioConsulta.gerarConsulta();
+                            case REMOVER -> ficharioConsulta.excluirConsulta();
+                            case CONSULTAR -> ficharioConsulta.dadosDaConsulta();
+                            case RELATORIO -> ficharioConsulta.relatorioDeConsultas();
                             case SAIR -> { break; }
                             default -> {
                                 if(opcaoConsulta != 0) System.out.println("Opção inválida");

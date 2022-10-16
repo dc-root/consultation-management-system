@@ -1,10 +1,10 @@
-package main.ficharios;
+package main.repositorys;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import main.interfaces.Paciente;
-import main.interfaces.Endereco;
+import main.models.Endereco;
+import main.models.Paciente;
 
 public class FicharioPaciente extends FicharioGenerico<Paciente> implements Fichario {
     public FicharioPaciente(ArrayList<Paciente> pacientes) {

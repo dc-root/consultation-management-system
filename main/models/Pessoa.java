@@ -1,4 +1,4 @@
-package main.interfaces;
+package main.models;
 
 public abstract class Pessoa {
     protected String nome;

@@ -1,4 +1,4 @@
-package main.ficharios;
+package main.repositorys;
 
 public interface Fichario {
     void cadastrar();

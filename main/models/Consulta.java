@@ -1,4 +1,4 @@
-package main.interfaces;
+package main.models;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,8 +22,8 @@ public class Consulta {
     ) {
         this.medico = medico;
         this.paciente = paciente;
-        this.data = data;
-        this.hora = hora;
+        this.data = LocalDate.now();
+        this.hora = LocalTime.now();
     }
 
     public Medico getMedico() {

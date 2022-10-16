@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
-import main.ficharios.FicharioMedico;
-import main.ficharios.FicharioPaciente;
-import main.ficharios.FicharioConsulta;
-
-import main.interfaces.Consulta;
-import main.interfaces.Medico;
-import main.interfaces.Paciente;
+import main.models.Consulta;
+import main.models.Medico;
+import main.models.Paciente;
+import main.repositorys.FicharioConsulta;
+import main.repositorys.FicharioMedico;
+import main.repositorys.FicharioPaciente;
 
 import java.util.Scanner;
 
@@ -23,7 +22,7 @@ public class Main {
 
         FicharioMedico ficharioMedico = new FicharioMedico(medicos);
         FicharioPaciente ficharioPaciente = new FicharioPaciente(pacientes);
-        FicharioConsulta ficharioConsulta = new FicharioConsulta(consultas);
+        FicharioConsulta ficharioConsulta = new FicharioConsulta(consultas, medicos, pacientes);
 
         int opcaoGeral, opcaoPaciente, opcaoMedico, opcaoConsulta;
 

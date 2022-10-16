@@ -1,4 +1,4 @@
-package main.ficharios;
+package main.repositorys;
 
 import java.util.Scanner;
 import java.util.ArrayList;

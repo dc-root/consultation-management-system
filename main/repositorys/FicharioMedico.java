@@ -1,9 +1,9 @@
-package main.ficharios;
+package main.repositorys;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import main.interfaces.Medico;
+import main.models.Medico;
 
 public class FicharioMedico extends FicharioGenerico<Medico> implements Fichario {
     public FicharioMedico(ArrayList<Medico> medicos) {

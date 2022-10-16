@@ -1,4 +1,4 @@
-package main.interfaces;
+package main.models;
 
 import java.util.ArrayList;
 import java.util.Objects;

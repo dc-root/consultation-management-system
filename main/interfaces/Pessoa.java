@@ -19,35 +19,35 @@ public abstract class Pessoa {
         this.telefone = telefone;
     }
 
-    protected String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    protected void setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    protected String getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    protected void setCpf(String cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    protected String getIdentidade() {
+    public String getIdentidade() {
         return identidade;
     }
 
-    protected void setIdentidade(String identidade) {
+    public void setIdentidade(String identidade) {
         this.identidade = identidade;
     }
 
-    protected String getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    protected void setTelefone(String telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 }

@@ -2,12 +2,17 @@ package main.interfaces;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Consulta {
     private Medico medico;
     private Paciente paciente;
     private LocalDate data;
     private LocalTime hora;
+
+    DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter formatadorHora = DateTimeFormatter.ofPattern("hhs:mm:ss");
 
     public Consulta(
         Medico medico,
@@ -55,19 +60,21 @@ public class Consulta {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
+        return "[ medico: "+medico.getNome()+", paciente: "+paciente.getNome()+", data: "+data.format(formatadorData)+", hora: "+hora.format(formatadorHora)+"]";
     }
 
     @Override
     public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
+        if(this == obj) return true;
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+
+        Consulta consulta = (Consulta) obj;
+
+        return Objects.equals(hora.format(formatadorHora), consulta.hora.format(formatadorHora));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hora.format(formatadorHora));
     }
 }

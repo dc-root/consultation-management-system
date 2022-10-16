@@ -4,5 +4,5 @@ public interface Fichario {
     void cadastrar();
     void alterar();
     void remover();
-    void listar();
+    void consultar();
 }

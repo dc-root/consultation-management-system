@@ -24,9 +24,9 @@ public class FicharioConsulta extends FicharioGenerico<Consulta> implements Fich
     }
     
     @Override
-    public void listar(){
+    public void consultar(){
         
     }
 
-    public void listarTodos() {}
+    public void relatorio() {}
 }

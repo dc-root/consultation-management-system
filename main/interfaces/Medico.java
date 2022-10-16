@@ -1,5 +1,6 @@
 package main.interfaces;
 
+import java.util.Objects;
 
 public class Medico extends Pessoa {
     private String especialidade;
@@ -43,19 +44,20 @@ public class Medico extends Pessoa {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return "["+nome+", "+especialidade+", "+crm+", "+ctps+"]";
     }
 
     @Override
     public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
+        if(this == obj) return true;
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+
+        Medico medico = (Medico) obj;
+        return Objects.equals(crm, medico.crm) && Objects.equals(ctps, medico.ctps) && Objects.equals(cpf, medico.cpf);
     }
 
     @Override
     public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
+        return Objects.hash(crm, ctps, cpf);
     }
 }

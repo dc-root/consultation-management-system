@@ -1,9 +1,11 @@
 package main.interfaces;
 
+import java.util.Objects;
+
 public class Endereco {
     private String logradouro;
     private int numero;
-    private int complemento;
+    private String complemento;
     private String bairro;
     private String municipio;
     private String cep;
@@ -12,13 +14,12 @@ public class Endereco {
     public Endereco(
         String logradouro,
         int numero,
-        int complemento,
+        String complemento,
         String bairro,
         String municipio,
         String cep,
         int tipo
     ) {
-
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
@@ -44,11 +45,11 @@ public class Endereco {
         return numero;
     }
 
-    public int getComplemento() {
+    public String getComplemento() {
         return complemento;
     }
 
-    public void setComplemento(int complemento) {
+    public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
 
@@ -82,5 +83,24 @@ public class Endereco {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return logradouro+", "+numero+", "+bairro+", "+municipio+" - "+cep+" : "+complemento+", ["+tipo+"]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+
+        Endereco endereco = (Endereco) obj;
+        return Objects.equals(cep, endereco.cep);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cep);
     }
 }

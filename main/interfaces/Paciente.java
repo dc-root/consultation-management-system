@@ -1,9 +1,12 @@
 package main.interfaces;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Paciente extends Pessoa {
     private String nomeConvenio;
     private int numeroConvenio;
-    private Endereco[] enderecos = new Endereco[2];
+    private ArrayList<Endereco> enderecos;
 
     public Paciente(
         String nome,
@@ -12,7 +15,7 @@ public class Paciente extends Pessoa {
         String telefone,
         String nomeConvenio,
         int numeroConvenio,
-        Endereco[] enderecos
+        ArrayList<Endereco> enderecos
     ) {
         this.nome = nome;
         this.cpf = cpf;
@@ -39,29 +42,32 @@ public class Paciente extends Pessoa {
         this.numeroConvenio = numeroConvenio;
     }
 
-    public Endereco[] getEnderecos() {
+    public ArrayList<Endereco> getEnderecos() {
         return enderecos;
     }
 
-    public void setEnderecos(Endereco[] endereco) {
+    public void setEnderecos(ArrayList<Endereco> endereco) {
         this.enderecos = endereco;
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return "[ "+nome+", "+cpf+", "+identidade+", "+telefone+", "+nomeConvenio+", "+numeroConvenio+
+        ", Endereços: "+
+            (enderecos.size() == 2 ? "("+enderecos.get(0)+"), ("+enderecos.get(1)+")" : "("+enderecos.get(0))+")"+" ]";
     }
 
     @Override
     public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        return super.equals(obj);
+        if(this == obj) return true;
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+
+        Paciente paciente = (Paciente) obj;
+        return Objects.equals(cpf, paciente.cpf) && Objects.equals(identidade, paciente.identidade);
     }
 
     @Override
     public int hashCode() {
-        // TODO Auto-generated method stub
-        return super.hashCode();
+        return Objects.hash(cpf, identidade);
     }
 }

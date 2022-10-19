@@ -8,10 +8,20 @@ import main.repositorys.FicharioMedico;
 import main.repositorys.FicharioPaciente;
 
 import java.util.Scanner;
+import java.util.EnumSet;
+import java.util.List;
 
 public class Main {
     public enum OpGeral { SAIR, OPERACAO_PACIENTE, OPERACAO_MEDICO, OPERACAO_CONSULTA }
     public enum OpFicharios { SAIR, CADASTRAR, ALTERAR, REMOVER, CONSULTAR, RELATORIO }
+
+    OpGeral validationOption(int index) {
+        OpGeral opcao = EnumSet.allOf(OpGeral.class).stream()
+           .filter(op -> op.ordinal() == index
+        ).findAny().orElse(OpGeral.valueOf("SAIR"));
+  
+        return opcao;
+     }
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
@@ -35,9 +45,8 @@ public class Main {
             System.out.println("0 - Sair ");
             System.out.print("Opção: ");
             opcaoGeral = entrada.nextInt();
-
-            OpGeral opcaoG = OpGeral.values()[opcaoGeral];
-            switch(opcaoG) {
+            
+            switch(EnumValidationOption(opcaoGeral)) {
                 case OPERACAO_PACIENTE -> {
                     do {
                         System.out.println("\nPACIENTE");
@@ -51,8 +60,7 @@ public class Main {
                         "opção: ");
                         opcaoPaciente = entrada.nextInt();
 
-                        OpFicharios opcaoF = OpFicharios.values()[opcaoPaciente];
-                        switch(opcaoF) {
+                        switch(EnumValidationOption(opcaoPaciente)) {
                             case CADASTRAR -> ficharioPaciente.cadastrar();
                             case ALTERAR -> ficharioPaciente.alterar();
                             case REMOVER -> ficharioPaciente.remover();

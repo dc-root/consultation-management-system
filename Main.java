@@ -8,20 +8,21 @@ import main.repositorys.FicharioMedico;
 import main.repositorys.FicharioPaciente;
 
 import java.util.Scanner;
-import java.util.EnumSet;
-import java.util.List;
 
 public class Main {
-    public enum OpGeral { SAIR, OPERACAO_PACIENTE, OPERACAO_MEDICO, OPERACAO_CONSULTA }
-    public enum OpFicharios { SAIR, CADASTRAR, ALTERAR, REMOVER, CONSULTAR, RELATORIO }
+    public enum Operacoes {
+        SAIR(0), OPERACAO_PACIENTE(1), OPERACAO_MEDICO(2), OPERACAO_CONSULTA(3),
+        CADASTRAR(1), ALTERAR(2), REMOVER(3), CONSULTAR(4), RELATORIO(5);
 
-    OpGeral validationOption(int index) {
-        OpGeral opcao = EnumSet.allOf(OpGeral.class).stream()
-           .filter(op -> op.ordinal() == index
-        ).findAny().orElse(OpGeral.valueOf("SAIR"));
-  
-        return opcao;
-     }
+        private final int opcao;
+
+        Operacoes(int vopcao) {
+            opcao = vopcao;
+        }
+        public int getOpcao() {
+            return opcao;
+        }
+    }
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
@@ -35,23 +36,24 @@ public class Main {
         FicharioConsulta ficharioConsulta = new FicharioConsulta(consultas, medicos, pacientes);
 
         int opcaoGeral, opcaoPaciente, opcaoMedico, opcaoConsulta;
-
         do {
-            System.out.println("\nSISTEMA DE GESTÃO DE CONSULTAS");
-            System.out.println("------------------------------------------");
-            System.out.println("1 - Paciente ");
-            System.out.println("2 - Medico ");
-            System.out.println("3 - Consulta ");
-            System.out.println("0 - Sair ");
-            System.out.print("Opção: ");
+            System.out.print("\nSISTEMA DE GESTÃO DE CONSULTAS\n"
+            +"------------------------------------------\n"
+            +"1 - Paciente\n"
+            +"2 - Medico\n"
+            +"3 - Consulta\n"
+            +"0 - Sair\n"
+            +"Opção: ");
             opcaoGeral = entrada.nextInt();
-            
-            switch(EnumValidationOption(opcaoGeral)) {
+
+            Operacoes opcaoG = Operacoes.values()[opcaoGeral];
+            switch(opcaoG) {
                 case OPERACAO_PACIENTE -> {
                     do {
                         System.out.println("\nPACIENTE");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. cadastrar um paciente \n"+
+                        System.out.print(
+                        "1. cadastrar um paciente \n"+
                         "2. alterar dados de um paciente \n"+
                         "3. remover um paciente \n"+
                         "4. mostrar dados de um paciente \n"+
@@ -60,15 +62,15 @@ public class Main {
                         "opção: ");
                         opcaoPaciente = entrada.nextInt();
 
-                        switch(EnumValidationOption(opcaoPaciente)) {
+                        Operacoes opcaoP = Operacoes.values()[opcaoPaciente];
+                        switch(opcaoP) {
                             case CADASTRAR -> ficharioPaciente.cadastrar();
                             case ALTERAR -> ficharioPaciente.alterar();
                             case REMOVER -> ficharioPaciente.remover();
                             case CONSULTAR -> ficharioPaciente.consultar();
                             case RELATORIO -> ficharioPaciente.relatorio();
-                            case SAIR -> { break; }
                             default -> {
-                                if(opcaoPaciente != 0) System.out.println("Opção inválida");
+                                if(!opcaoP.equals(Operacoes.SAIR)) System.out.println("Opção inválida");
                             }
                         }
                     } while(opcaoPaciente != 0);
@@ -78,7 +80,8 @@ public class Main {
                     do {
                         System.out.println("\nMEDICO");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. cadastrar um medico \n"+
+                        System.out.print(
+                        "1. cadastrar um medico \n"+
                         "2. alterar dados de um medico \n"+
                         "3. remover um medico \n"+
                         "4. mostrar dados de um medico \n"+
@@ -87,16 +90,15 @@ public class Main {
                         "opção: ");
                         opcaoMedico = entrada.nextInt();
 
-                        OpFicharios opcaoF = OpFicharios.values()[opcaoMedico];
-                        switch(opcaoF) {
+                        Operacoes opcaoM = Operacoes.values()[opcaoMedico];
+                        switch(opcaoM) {
                             case CADASTRAR -> ficharioMedico.cadastrar();
                             case ALTERAR -> ficharioMedico.alterar();
                             case REMOVER -> ficharioMedico.remover();
                             case CONSULTAR -> ficharioMedico.consultar();
                             case RELATORIO -> ficharioMedico.relatorio();
-                            case SAIR -> { break; }
                             default -> {
-                                if(opcaoMedico != 0) System.out.println("Opção inválida");
+                                if(!opcaoM.equals(Operacoes.SAIR)) System.out.println("Opção inválida");
                             }
                         }
                     } while(opcaoMedico != 0);
@@ -106,7 +108,8 @@ public class Main {
                     do {
                         System.out.println("\nCONSULTA");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. gerar consulta \n"+
+                        System.out.print(
+                        "1. gerar consulta \n"+
                         "2. alterar dados de consulta \n"+
                         "3. remover consulta \n"+
                         "4. mostrar dados de consulta \n"+
@@ -115,21 +118,20 @@ public class Main {
                         "opção: ");
                         opcaoConsulta = entrada.nextInt();
 
-                        OpFicharios opcaoF = OpFicharios.values()[opcaoConsulta];
-                        switch(opcaoF) {
+                        Operacoes opcaoC = Operacoes.values()[opcaoConsulta];
+                        switch(opcaoC) {
                             case CADASTRAR -> ficharioConsulta.gerarConsulta();
                             case REMOVER -> ficharioConsulta.excluirConsulta();
                             case CONSULTAR -> ficharioConsulta.dadosDaConsulta();
                             case RELATORIO -> ficharioConsulta.relatorioDeConsultas();
-                            case SAIR -> { break; }
                             default -> {
-                                if(opcaoConsulta != 0) System.out.println("Opção inválida");
+                                if(!opcaoC.equals(Operacoes.SAIR)) System.out.println("Opção inválida");
                             }
                         }
                     } while(opcaoConsulta != 0);
                 }
                 default -> {
-                    if (opcaoGeral != 0) System.out.println("Opção inválida!");
+                    if(!opcaoG.equals(Operacoes.SAIR)) System.out.println("Opção inválida!");
                 }
             }
         } while (opcaoGeral != 0);

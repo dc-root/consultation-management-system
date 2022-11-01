@@ -1,46 +1,48 @@
-import java.util.EnumSet;
 import java.util.Scanner;
 
-import java.lang.reflect.Method;
+public class MMain {
+      public enum Operacoes {
+         SAIR(0), OPERACAO_PACIENTE(1), OPERACAO_MEDICO(2), OPERACAO_CONSULTA(3),
+         CADASTRAR(1), ALTERAR(2), REMOVER(3), CONSULTAR(4), RELATORIO(5);
 
-public class Main {
-   public enum OpGeral { SAIR, OPERACAO_PACIENTE, OPERACAO_MEDICO, OPERACAO_CONSULTA }
-   public enum OpFicharios { SAIR, CADASTRAR, ALTERAR, REMOVER, CONSULTAR, RELATORIO }
+         private final int opcao;
 
-   private static Enum<?> validationOption(int index, Enum<?>[] OperationType) {
+         Operacoes(int vopcao) {
+            opcao = vopcao;
+         }
+         public int getValor() {
+            return opcao;
+         }
+   }
 
-      Method method = OperationType.getMethod("valueOf", String);
-
-      Enum<?> opcao = EnumSet.allOf(OperationType.class).stream()
-         .filter(op -> op.ordinal() == index
-      ).findAny().orElse(method.invoke(null, "SAIR"));
-
-      return opcao;
+   public static Operacoes opcaoMenu(int index) {
+      return Operacoes.values()[index];
    }
 
    public static void main(String[] args) {
-      System.out.println(validationOption(1, OpGeral));
-   //    Scanner entrada = new Scanner(System.in);
-   //    int opcaoGeral;
-   //    do {
-   //       System.out.println("\nSISTEMA DE GESTÃO DE CONSULTAS");
-   //       System.out.println("------------------------------------------");
-   //       System.out.println("1 - Paciente ");
-   //       System.out.println("2 - Medico ");
-   //       System.out.println("3 - Consulta ");
-   //       System.out.println("0 - Sair ");
-   //       System.out.print("Opção: ");
-   //       opcaoGeral = entrada.nextInt();
+      Scanner entrada = new Scanner(System.in);
 
-   //       switch(validationOption(opcaoGeral)) {
-   //          case OPERACAO_PACIENTE -> System.out.println("Operação paciente");
-   //          case OPERACAO_MEDICO-> System.out.println("Operação medico");
-   //          case OPERACAO_CONSULTA-> System.out.println("Operação consulta");
-   //          default -> {
-   //             if (opcaoGeral != 0) System.out.println("Opção inválida!");
-   //          }
-   //       }
-   //  } while(opcaoGeral != 0);
-   //  entrada.close();
+      Operacoes geral;
+      do {
+         System.out.print("\nSISTEMA DE GESTÃO DE CONSULTAS\n"
+         +"------------------------------------------\n"
+         +"1 - Paciente\n"
+         +"2 - Medico\n"
+         +"3 - Consulta\n"
+         +"0 - Sair\n"
+         +"Opção: ");
+
+         geral = opcaoMenu(entrada.nextInt());
+
+         switch(geral) {
+            case OPERACAO_PACIENTE -> System.out.println("Operação paciente");
+            case OPERACAO_MEDICO-> System.out.println("Operação medico");
+            case OPERACAO_CONSULTA-> System.out.println("Operação consulta");
+            default -> {
+               if (!geral.equals(Operacoes.SAIR)) System.out.println("Opção inválida!");
+            }
+         }
+    } while(!geral.equals(Operacoes.SAIR));
+      entrada.close();
    }
 }

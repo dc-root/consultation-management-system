@@ -1,0 +1,1 @@
+INSERT INTO medicos (nome, especialidade, crm, ctps) VALUES ("André Vasconcelos", "Cirurgião", "159357", "12256350014")

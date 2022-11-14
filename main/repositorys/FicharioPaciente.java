@@ -214,7 +214,7 @@ public class FicharioPaciente extends FicharioGenerico<Paciente> implements Fich
         Paciente paciente = buscarPaciente(cpf);
 
         if(paciente != null) {
-            System.out.printf("\n[DADOS DO PACIENTE %s]\n", paciente.getNome().toUpperCase());
+            System.out.println("[DADOS DE PACIENTE]");
             System.out.println("------------------------------------------------------------------------------------");
             System.out.println(paciente);
         } else {

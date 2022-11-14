@@ -8,21 +8,8 @@ import main.repositorys.FicharioMedico;
 import main.repositorys.FicharioPaciente;
 
 import java.util.Scanner;
-import java.util.EnumSet;
-import java.util.List;
 
 public class Main {
-    public enum OpGeral { SAIR, OPERACAO_PACIENTE, OPERACAO_MEDICO, OPERACAO_CONSULTA }
-    public enum OpFicharios { SAIR, CADASTRAR, ALTERAR, REMOVER, CONSULTAR, RELATORIO }
-
-    OpGeral validationOption(int index) {
-        OpGeral opcao = EnumSet.allOf(OpGeral.class).stream()
-           .filter(op -> op.ordinal() == index
-        ).findAny().orElse(OpGeral.valueOf("SAIR"));
-  
-        return opcao;
-     }
-
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
 
@@ -46,12 +33,13 @@ public class Main {
             System.out.print("Opção: ");
             opcaoGeral = entrada.nextInt();
             
-            switch(EnumValidationOption(opcaoGeral)) {
-                case OPERACAO_PACIENTE -> {
+            switch(opcaoGeral) {
+                case 1 -> {
                     do {
                         System.out.println("\nPACIENTE");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. cadastrar um paciente \n"+
+                        System.out.print(
+                        "1. cadastrar um paciente \n"+
                         "2. alterar dados de um paciente \n"+
                         "3. remover um paciente \n"+
                         "4. mostrar dados de um paciente \n"+
@@ -60,13 +48,12 @@ public class Main {
                         "opção: ");
                         opcaoPaciente = entrada.nextInt();
 
-                        switch(EnumValidationOption(opcaoPaciente)) {
-                            case CADASTRAR -> ficharioPaciente.cadastrar();
-                            case ALTERAR -> ficharioPaciente.alterar();
-                            case REMOVER -> ficharioPaciente.remover();
-                            case CONSULTAR -> ficharioPaciente.consultar();
-                            case RELATORIO -> ficharioPaciente.relatorio();
-                            case SAIR -> { break; }
+                        switch(opcaoPaciente) {
+                            case 1 -> ficharioPaciente.cadastrar();
+                            case 2 -> ficharioPaciente.alterar();
+                            case 3 -> ficharioPaciente.remover();
+                            case 4 -> ficharioPaciente.consultar();
+                            case 5 -> ficharioPaciente.relatorio();
                             default -> {
                                 if(opcaoPaciente != 0) System.out.println("Opção inválida");
                             }
@@ -74,11 +61,12 @@ public class Main {
                     } while(opcaoPaciente != 0);
                 }
 
-                case OPERACAO_MEDICO -> {
+                case 2 -> {
                     do {
                         System.out.println("\nMEDICO");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. cadastrar um medico \n"+
+                        System.out.print(
+                        "1. cadastrar um medico \n"+
                         "2. alterar dados de um medico \n"+
                         "3. remover um medico \n"+
                         "4. mostrar dados de um medico \n"+
@@ -87,14 +75,12 @@ public class Main {
                         "opção: ");
                         opcaoMedico = entrada.nextInt();
 
-                        OpFicharios opcaoF = OpFicharios.values()[opcaoMedico];
-                        switch(opcaoF) {
-                            case CADASTRAR -> ficharioMedico.cadastrar();
-                            case ALTERAR -> ficharioMedico.alterar();
-                            case REMOVER -> ficharioMedico.remover();
-                            case CONSULTAR -> ficharioMedico.consultar();
-                            case RELATORIO -> ficharioMedico.relatorio();
-                            case SAIR -> { break; }
+                        switch(opcaoMedico) {
+                            case 1 -> ficharioMedico.cadastrar();
+                            case 2 -> ficharioMedico.alterar();
+                            case 3 -> ficharioMedico.remover();
+                            case 4 -> ficharioMedico.consultar();
+                            case 5 -> ficharioMedico.relatorio();
                             default -> {
                                 if(opcaoMedico != 0) System.out.println("Opção inválida");
                             }
@@ -102,11 +88,12 @@ public class Main {
                     } while(opcaoMedico != 0);
                 }
 
-                case OPERACAO_CONSULTA -> {
+                case 3 -> {
                     do {
                         System.out.println("\nCONSULTA");
                         System.out.println("------------------------------------------");
-                        System.out.print("1. gerar consulta \n"+
+                        System.out.print(
+                        "1. gerar consulta \n"+
                         "2. alterar dados de consulta \n"+
                         "3. remover consulta \n"+
                         "4. mostrar dados de consulta \n"+
@@ -115,13 +102,12 @@ public class Main {
                         "opção: ");
                         opcaoConsulta = entrada.nextInt();
 
-                        OpFicharios opcaoF = OpFicharios.values()[opcaoConsulta];
-                        switch(opcaoF) {
-                            case CADASTRAR -> ficharioConsulta.gerarConsulta();
-                            case REMOVER -> ficharioConsulta.excluirConsulta();
-                            case CONSULTAR -> ficharioConsulta.dadosDaConsulta();
-                            case RELATORIO -> ficharioConsulta.relatorioDeConsultas();
-                            case SAIR -> { break; }
+                        switch(opcaoConsulta) {
+                            case 1 -> ficharioConsulta.gerarConsulta();
+                            case 2 -> ficharioConsulta.alterarConsulta();
+                            case 3 -> ficharioConsulta.excluirConsulta();
+                            case 4 -> ficharioConsulta.dadosDaConsulta();
+                            case 5 -> ficharioConsulta.relatorioDeConsultas();
                             default -> {
                                 if(opcaoConsulta != 0) System.out.println("Opção inválida");
                             }

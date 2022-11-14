@@ -102,7 +102,7 @@ public class FicharioMedico extends FicharioGenerico<Medico> implements Fichario
         Medico medico = buscarMedico(crm);
 
         if(medico != null) {
-            System.out.printf("\n[DADOS DO MEDICO %s]\n", medico.getNome().toUpperCase());
+            System.out.println("[DADOS MEDICO]");
             System.out.println("------------------------------------------------------------------------------------");
             System.out.println(medico);
         } else {

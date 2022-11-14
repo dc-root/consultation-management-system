@@ -60,6 +60,19 @@ public class FicharioConsulta extends FicharioGenerico<Consulta> {
         }
     }
 
+
+    public void alterarConsulta() { // ALTERAR
+        System.out.print("Numero do codigo da consulta a ser excluida: ");
+        String codigo = entrada.nextLine();
+
+        Consulta consulta = buscarConsulta(codigo);
+        if(consulta != null) {
+            
+        } else {
+            System.out.println("\nNúmero de codigo de consulta não encontrado!");
+        }
+    }
+
     public void dadosDaConsulta() { // CONSULTAR
         System.out.print("Numero do codigo da consulta a ser excluida: ");
         String codigo = entrada.nextLine();
